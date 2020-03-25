@@ -36,20 +36,12 @@
 
       <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly;" remove-hand-mesh>
 
-        <a-cylinder radius="0.003" height="0.09" rotation="0 60 70" color="blue">
-          <a-entity raycaster="objects: .drawable; showLine: false; far: 0.13" crayon rotation="-90 0 0"
-            position="0 0.05 0">
-          </a-entity>
-        </a-cylinder>
+        <a-entity rotation="0 60 70" crayon></a-entity>
 
       </a-entity>
       <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly;" remove-hand-mesh>
 
-        <a-cylinder radius="0.003" height="0.09" rotation="30 0 -30" color="red">
-          <a-entity raycaster="objects: .drawable; showLine: false; far: 0.13" crayon rotation="-90 0 0"
-            position="0 0.05 0">
-          </a-entity>
-        </a-cylinder>
+        <a-entity rotation="30 0 -30" crayon></a-entity>
 
       </a-entity>
     </a-entity>

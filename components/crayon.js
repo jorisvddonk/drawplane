@@ -5,6 +5,13 @@ AFRAME.registerComponent('crayon', {
     this.el.addEventListener('raycaster-intersection', (e, f) => {
       this.hit = e.detail.els[0];
     });
+    const child = document.createElement('a-cylinder');
+    child.setAttribute('radius', '0.003');
+    child.setAttribute('height', '0.09');
+    child.setAttribute('color', 'red');
+    const r = document.createElement('a-entity');
+    this.el.setAttribute('raycaster', 'objects: .drawable; showLine: true; far: 0.13; direction: 0 -1 0');
+    this.el.appendChild(child);
   },
   createLine: function (point) {
     this.lastLine = document.createElement('a-entity');
