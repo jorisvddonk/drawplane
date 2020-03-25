@@ -1,4 +1,10 @@
 AFRAME.registerComponent('crayon', {
+  schema: {
+    color: {
+      type: "string",
+      default: 'white'
+    }
+  },
   init: function () {
     this.hit = null;
     this.points = document.getElementById('points');
@@ -8,13 +14,13 @@ AFRAME.registerComponent('crayon', {
     const child = document.createElement('a-cylinder');
     child.setAttribute('radius', '0.003');
     child.setAttribute('height', '0.09');
-    child.setAttribute('color', 'red');
+    child.setAttribute('color', this.data.color);
     this.el.setAttribute('raycaster', 'objects: .drawable; showLine: false; far: 0.13; direction: 0 -1 0; origin: 0 0.05 0');
     this.el.appendChild(child);
   },
   createLine: function (point) {
     this.lastLine = document.createElement('a-entity');
-    this.lastLine.setAttribute('meshline', `lineWidth: 20; path: ${point.x} ${point.y} ${point.z}; color: #000000`);
+    this.lastLine.setAttribute('meshline', `lineWidth: 20; path: ${point.x} ${point.y} ${point.z}; color: ${this.data.color}`);
     this.lastLine.setAttribute('linedrawer', "");
     this.points.appendChild(this.lastLine);
   },
