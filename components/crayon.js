@@ -9,8 +9,7 @@ AFRAME.registerComponent('crayon', {
     child.setAttribute('radius', '0.003');
     child.setAttribute('height', '0.09');
     child.setAttribute('color', 'red');
-    const r = document.createElement('a-entity');
-    this.el.setAttribute('raycaster', 'objects: .drawable; showLine: true; far: 0.13; direction: 0 -1 0');
+    this.el.setAttribute('raycaster', 'objects: .drawable; showLine: false; far: 0.13; direction: 0 -1 0; origin: 0 0.05 0');
     this.el.appendChild(child);
   },
   createLine: function (point) {
