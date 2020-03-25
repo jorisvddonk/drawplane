@@ -11,6 +11,9 @@ AFRAME.registerComponent('crayon', {
     this.el.addEventListener('raycaster-intersection', (e, f) => {
       this.hit = e.detail.els[0];
     });
+    this.el.addEventListener('raycaster-intersection-cleared', (e, f) => {
+      this.finishLine();
+    });
     const child = document.createElement('a-cylinder');
     child.setAttribute('radius', '0.003');
     child.setAttribute('height', '0.09');
@@ -24,6 +27,12 @@ AFRAME.registerComponent('crayon', {
     this.lastLine.setAttribute('linedrawer', "");
     this.points.appendChild(this.lastLine);
   },
+  finishLine: function () {
+    if (this.lastLine !== undefined) {
+      this.lastLine.components.linedrawer.finish(this.data.color);
+    }
+    this.lastLine = undefined;
+  },
   tick: function (time) {
     if (this.el && this.el.components && this.el.components.raycaster) {
       if (this.hit !== null) {
@@ -34,7 +43,7 @@ AFRAME.registerComponent('crayon', {
           }
           this.lastLine.components.linedrawer.addPoint(h.point)
         } else {
-          this.lastLine = undefined;
+          this.finishLine();
         }
       }
     }
